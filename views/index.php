@@ -1,16 +1,9 @@
-<?php
-$query = $pdo->prepare("SELECT * from blog_posts ORDER BY id DESC");
-$query->execute();
-
-$blog_posts = $query->fetchAll(PDO::FETCH_ASSOC);
- ?>
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Blog</title>
-    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
@@ -26,7 +19,7 @@ $blog_posts = $query->fetchAll(PDO::FETCH_ASSOC);
               echo "<h2>" . $blog_post['title'] . "</h2>";
               echo '<p>Jan 19, 2019 by <a href="#">Alex</a></p>';
               echo '<div class="blog-post-image">';
-                echo '<img src="images/Keyboard.png" alt="image">';
+                echo '<img src="../images/Keyboard.png" alt="image">';
               echo '</div>';
               echo '<div class="blog-post-content">';
                 echo $blog_post['content'];

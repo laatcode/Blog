@@ -5,20 +5,25 @@ ini_set('display_startup_errors', TRUE);
 error_reporting(E_ALL);
 
 require_once('../config.php');
+require_once('../vendor/autoload.php');
 
 $route = $_GET['route'] ?? '/';
 
-switch ($route) {
-  case '/':
-    require '../index.php';
-    break;
+use Phroute\Phroute\RouteCollector;
 
-  case '/admin':
-    require '../admin/index.php';
-    break;
+$router = new RouteCollector();
+$router->get('/', function () use ($pdo) {
+  $query = $pdo->prepare("SELECT * from blog_posts ORDER BY id DESC");
+  $query->execute();
 
-  case '/admin/posts':
-    require '../admin/posts.php';
-    break;
-}
+  $blog_posts = $query->fetchAll(PDO::FETCH_ASSOC);
+  include '../views/index.php';
+});
+
+$dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
+
+$response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $route);
+
+echo $response;
+
  ?>
