@@ -7,6 +7,13 @@ error_reporting(E_ALL);
 require_once('../config.php');
 require_once('../vendor/autoload.php');
 
+// Se reemplaza el nombre del archivo (ej. index.php) con una cadena vacía para obtener el BaseDir
+$baseDir = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+// Se concatena el host (localhost) con el basedir obtenido previamente
+$baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . $baseDir;
+define('BASE_URL', $baseUrl);
+
+// En caso de que $_GET['route'] no tenga valor, se toma '/'
 $route = $_GET['route'] ?? '/';
 
 use Phroute\Phroute\RouteCollector;
