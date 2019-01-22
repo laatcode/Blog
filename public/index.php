@@ -30,12 +30,17 @@ function render($fileName, $params = []){
 use Phroute\Phroute\RouteCollector;
 
 $router = new RouteCollector();
+
 $router->get('/', function () use ($pdo) {
   $query = $pdo->prepare("SELECT * from blog_posts ORDER BY id DESC");
   $query->execute();
 
   $blogPosts = $query->fetchAll(PDO::FETCH_ASSOC);
   return render('../views/index.php', ['blogPosts' => $blogPosts]);
+});
+
+$router->get('/admin', function (){
+  return render('../views/admin/index.php');
 });
 
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
