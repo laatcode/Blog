@@ -1,0 +1,10 @@
+RewriteEngine On
+
+#Verifica el nombre del archivo que estamos consultando y valida si es un archivo que existe realmente
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#Verifica el nombre del archivo que estamos consultando y valida si es un archivo que existe realmente
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#Cualquier cosa que llegue luego de la base, se le envia a index.php en el parámetro route
+RewriteRule ^(.*)$ index.php?route=$1
