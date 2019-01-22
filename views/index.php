@@ -14,15 +14,15 @@
       </div>
       <div class="row">
         <div class="col-md-8">
-          <?php foreach ($blog_posts as $blog_post){
+          <?php foreach ($blogPosts as $blogPost){
             echo '<div class="blog-post">';
-              echo "<h2>" . $blog_post['title'] . "</h2>";
+              echo "<h2>" . $blogPost['title'] . "</h2>";
               echo '<p>Jan 19, 2019 by <a href="#">Alex</a></p>';
               echo '<div class="blog-post-image">';
                 echo '<img src="../images/Keyboard.png" alt="image">';
               echo '</div>';
               echo '<div class="blog-post-content">';
-                echo $blog_post['content'];
+                echo $blogPost['content'];
               echo "</div>";
             echo "</div>";
           }

@@ -16,6 +16,17 @@ define('BASE_URL', $baseUrl);
 // En caso de que $_GET['route'] no tenga valor, se toma '/'
 $route = $_GET['route'] ?? '/';
 
+function render($fileName, $params = []){
+  // El método ob_start hace que todas las salidas de PHP se vayan a un buffer interno
+  ob_start();
+  // Toma un arreglo asociativo y si los índices del arreglo son cadenas de caracteres, las convierte en variables públicas
+  extract($params);
+  include $fileName;
+  // Trae los datos que están actualmente en el buffer y posteriormente lo limpia
+  return ob_get_clean();
+}
+
+
 use Phroute\Phroute\RouteCollector;
 
 $router = new RouteCollector();
@@ -23,8 +34,8 @@ $router->get('/', function () use ($pdo) {
   $query = $pdo->prepare("SELECT * from blog_posts ORDER BY id DESC");
   $query->execute();
 
-  $blog_posts = $query->fetchAll(PDO::FETCH_ASSOC);
-  include '../views/index.php';
+  $blogPosts = $query->fetchAll(PDO::FETCH_ASSOC);
+  return render('../views/index.php', ['blogPosts' => $blogPosts]);
 });
 
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
