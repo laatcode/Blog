@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Blog</title>
-    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="../views/CSS/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
@@ -17,7 +17,7 @@
           <h2>Admin Panel</h2>
           <ul>
             <li>
-              <a href="posts.php">Manage Posts</a>
+              <a href="<?php echo BASE_URL; ?>admin/posts">Manage Posts</a>
             </li>
           </ul>
         </div>
@@ -29,7 +29,7 @@
         <div class="col-md-12">
           <footer>
             This is a footer<br>
-            <a href="index.php">Admin panel</a>
+            <a href="<?php echo BASE_URL; ?>admin">Admin panel</a>
           </footer>
         </div>
       </div>

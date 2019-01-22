@@ -1,16 +1,9 @@
-<?php
-$query = $pdo->prepare("SELECT * from blog_posts ORDER BY id DESC");
-$query->execute();
-
-$blog_posts = $query->fetchAll(PDO::FETCH_ASSOC);
- ?>
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Blog</title>
-    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="../../views/CSS/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
@@ -22,7 +15,9 @@ $blog_posts = $query->fetchAll(PDO::FETCH_ASSOC);
       <div class="row">
         <div class="col-md-8">
           <h2>Posts</h2>
-          <a class="btn btn-primary" href="insert-post.php">New Post</a>
+          <p>
+            <a class="btn btn-primary" href="<?php echo BASE_URL ?>admin/posts/create">New Post</a>
+          </p>
           <table class="table">
             <tr>
               <th>Title</th>
@@ -30,9 +25,9 @@ $blog_posts = $query->fetchAll(PDO::FETCH_ASSOC);
               <th>Delete</th>
             </tr>
             <?php
-            foreach ($blog_posts as $blog_post) {
+            foreach ($blogPosts as $blogPost) {
               echo "<tr>";
-              echo "<td>" . $blog_post['title'] . "</td>";
+              echo "<td>" . $blogPost['title'] . "</td>";
               echo "<td>Edit</td>";
               echo "<td>Delete</td>";
               echo "</tr>";
@@ -48,7 +43,7 @@ $blog_posts = $query->fetchAll(PDO::FETCH_ASSOC);
         <div class="col-md-12">
           <footer>
             This is a footer<br>
-            <a href="index.php">Admin panel</a>
+            <a href="<?php echo BASE_URL; ?>admin">Admin panel</a>
           </footer>
         </div>
       </div>

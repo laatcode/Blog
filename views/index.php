@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Blog</title>
-    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="../views/CSS/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
@@ -19,7 +19,7 @@
               echo "<h2>" . $blogPost['title'] . "</h2>";
               echo '<p>Jan 19, 2019 by <a href="#">Alex</a></p>';
               echo '<div class="blog-post-image">';
-                echo '<img src="../images/Keyboard.png" alt="image">';
+                echo '<img src="images/Keyboard.png" alt="image">';
               echo '</div>';
               echo '<div class="blog-post-content">';
                 echo $blogPost['content'];
@@ -36,7 +36,7 @@
         <div class="col-md-12">
           <footer>
             This is a footer<br>
-            <a href="admin/index.php">Admin panel</a>
+            <a href="<?php echo BASE_URL; ?>admin">Admin panel</a>
           </footer>
         </div>
       </div>

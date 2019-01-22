@@ -1,22 +1,9 @@
-<?php
-$result = false;
-
-if(!empty($_POST)) {
-  $sql = 'INSERT INTO blog_posts (title, content) VALUES (:title, :content)';
-  $query = $pdo->prepare($sql);
-  $result = $query->execute([
-    'title' => $_POST['title'],
-    'content' => $_POST['content']
-  ]);
-}
-?>
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Blog</title>
-    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../views/CSS/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
@@ -29,19 +16,19 @@ if(!empty($_POST)) {
         <div class="col-md-8">
           <h2>New Posts</h2>
           <p>
-            <a class="btn btn-secondary" href="posts.php">Back</a>
+            <a class="btn btn-secondary" href="<?php echo BASE_URL ?>admin/posts">Back</a>
           </p>
           <?php
-          if ($result) {
+          if (isset($result) && $result) {
             echo '<div class="alert alert-success">Post Saved!</div>';
           }
           ?>
           <form action="" method="post">
             <div class="form-group">
               <label for="inputTitle">Title</label>
-              <input class="form-control" type="text" name="title" id="inputTitle">
+              <input class="form-control" type="text" name="title" id="inputTitle" required>
             </div>
-            <textarea id="inputContent" class="form-control" name="content" rows="5"></textarea>
+            <textarea id="inputContent" class="form-control" name="content" rows="5" required></textarea>
             <br>
             <input class="btn btn-primary" type="submit" value="Save">
           </form>
