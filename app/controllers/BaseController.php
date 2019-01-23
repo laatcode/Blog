@@ -13,10 +13,15 @@ class BaseController {
     $loader = new Twig_Loader_Filesystem('../views');
 
     // Permite almacenar la configuración de Twig
-    $this->templateEngine = new \Twig_Enviroment($loader, [
+    $this->templateEngine = new \Twig_Environment($loader, [
       'debug' => true,
       'cache' => false
     ]);
+
+    // Permite tomar una cadena y modificarla de cierta forma para usarla en el template.
+    $this->templateEngine->addFilter(new \Twig_SimpleFilter('url', function ($path){
+      return BASE_URL . $path;
+    }));
   }
 
   public function render($fileName, $data = []) {
