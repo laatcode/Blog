@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 // ini_set Permite inicializar valores de configuración
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
@@ -15,17 +17,18 @@ define('BASE_URL', $baseUrl);
 // En caso de que $_GET['route'] no tenga valor, se toma '/'
 $route = $_GET['route'] ?? '/';
 
+$dotenv = \Dotenv\Dotenv::create(__DIR__ . '/..');
+$dotenv->load();
 
-use Illuminate\Database\Capsule\Manager as Capsule;
 
 $capsule = new Capsule;
 
 $capsule->addConnection([
     'driver'    => 'mysql',
-    'host'      => 'localhost',
-    'database'  => 'dbtest',
-    'username'  => 'dbtest',
-    'password'  => 'secret',
+    'host'      => getEnv('DB_HOST'),
+    'database'  => getEnv('DB_NAME'),
+    'username'  => getEnv('DB_USER'),
+    'password'  => getEnv('DB_PASS'),
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
