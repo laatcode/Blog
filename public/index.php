@@ -4,7 +4,6 @@ ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 error_reporting(E_ALL);
 
-require_once('../config.php');
 require_once('../vendor/autoload.php');
 
 // Se reemplaza el nombre del archivo (ej. index.php) con una cadena vacía para obtener el BaseDir
@@ -16,15 +15,24 @@ define('BASE_URL', $baseUrl);
 // En caso de que $_GET['route'] no tenga valor, se toma '/'
 $route = $_GET['route'] ?? '/';
 
-function render($fileName, $params = []){
-  // El método ob_start hace que todas las salidas de PHP se vayan a un buffer interno
-  ob_start();
-  // Toma un arreglo asociativo y si los índices del arreglo son cadenas de caracteres, las convierte en variables públicas
-  extract($params);
-  include $fileName;
-  // Trae los datos que están actualmente en el buffer y posteriormente lo limpia
-  return ob_get_clean();
-}
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver'    => 'mysql',
+    'host'      => 'localhost',
+    'database'  => 'dbtest',
+    'username'  => 'dbtest',
+    'password'  => 'secret',
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => '',
+]);
+
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
 
 use Phroute\Phroute\RouteCollector;
 
