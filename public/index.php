@@ -43,6 +43,7 @@ $router = new RouteCollector();
 
 $router->controller('/admin', App\Controllers\Admin\IndexController::class);
 $router->controller('/admin/posts', App\Controllers\Admin\PostController::class);
+$router->controller('/admin/users', App\Controllers\Admin\UserController::class);
 // ::class regresa el nombre de la clase, esto permite prevenir cometer errores de tipeo
 $router->controller('/', App\Controllers\IndexController::class);
 
