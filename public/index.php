@@ -8,6 +8,8 @@ error_reporting(E_ALL);
 
 require_once('../vendor/autoload.php');
 
+session_start();
+
 // Se reemplaza el nombre del archivo (ej. index.php) con una cadena vacía para obtener el BaseDir
 $baseDir = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
 // Se concatena el host (localhost) con el basedir obtenido previamente
@@ -41,6 +43,7 @@ use Phroute\Phroute\RouteCollector;
 
 $router = new RouteCollector();
 
+$router->controller('/auth', App\Controllers\AuthController::class);
 $router->controller('/admin', App\Controllers\Admin\IndexController::class);
 $router->controller('/admin/posts', App\Controllers\Admin\PostController::class);
 $router->controller('/admin/users', App\Controllers\Admin\UserController::class);
