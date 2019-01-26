@@ -5,9 +5,11 @@
   <div class="blog-post">
     <h2>{{ blogPost.title }}</h2>
     <p>Jan 19, 2019 by <a href="#">Alex</a></p>
-    <div class="blog-post-image">
-      <img src="images/Keyboard.png" alt="image">
-    </div>
+    {% if blogPost.img_url %}
+      <div class="blog-post-image">
+        <img src="{{ blogPost.img_url }}" alt="image">
+      </div>
+    {% endif %}
     <div class="blog-post-content">
       {{ blogPost.content }}
     </div>
