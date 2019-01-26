@@ -10,7 +10,7 @@ class BaseController {
 
   public function __construct() {
     // Clase que utiliza twig para cargar los archivos del sistema. Este método recibe como parametro, la ruta en la que se encuentran las vistas a utilizar.
-    $loader = new Twig_Loader_Filesystem('../views');
+    $loader = new Twig_Loader_Filesystem('app/views');
 
     // Permite almacenar la configuración de Twig
     $this->templateEngine = new \Twig_Environment($loader, [

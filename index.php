@@ -6,7 +6,7 @@ ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 error_reporting(E_ALL);
 
-require_once('../vendor/autoload.php');
+require_once('vendor/autoload.php');
 
 session_start();
 
@@ -19,7 +19,7 @@ define('BASE_URL', $baseUrl);
 // En caso de que $_GET['route'] no tenga valor, se toma '/'
 $route = $_GET['route'] ?? '/';
 
-$dotenv = \Dotenv\Dotenv::create(__DIR__ . '/..');
+$dotenv = \Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 
 
@@ -52,7 +52,7 @@ $router->filter('auth', function (){
 
 $router->controller('/auth', App\Controllers\AuthController::class);
 
-$router->group(['before' => 'auth'], function ($router){  
+$router->group(['before' => 'auth'], function ($router){
   $router->controller('/admin', App\Controllers\Admin\IndexController::class);
   $router->controller('/admin/posts', App\Controllers\Admin\PostController::class);
   $router->controller('/admin/users', App\Controllers\Admin\UserController::class);
