@@ -1,3 +1,62 @@
-.blog-post-image img {
-  width: 100%;
+.header {
+  background: black;
+  color: white;
+}
+
+.logo a {
+  font-family: 'Pacifico', cursive;
+  text-decoration: none;
+  color: white;
+  font-size: 2rem;
+}
+
+.content {
+  padding-top: 20px;
+  background: #F3F3F6;
+}
+
+.content a {
+  text-decoration: none;
+  color: black;
+}
+
+.blog-post {
+  background: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: .3s;
+}
+
+.content a:hover .blog-post {
+  border: 2px solid #058ED9;
+  box-shadow: 5px 5px #058ED9;
+}
+
+.blog-post h2, .blog-post p {
+  color: #058ED9;
+  font-weight: bold;
+}
+
+.thumbnail {
+  width: 100px;
+}
+
+.footer {
+  background: black;
+  color: white;
+}
+
+.footer i {
+  margin-right: 10px;
+}
+
+.footer .row {
+  height: 150px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
 }
