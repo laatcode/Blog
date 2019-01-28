@@ -2,7 +2,7 @@
 
 {% block content %}
   {% for blogPost in blogPosts %}
-    <a href="blogPost/{{blogPost.id}}">
+    <a class="post" href="post&id={{ blogPost.id }}">
       <div class="blog-post">
         <h2>{{ blogPost.title }}</h2>
         <p>Jan 19, 2019 by Alex</p>
