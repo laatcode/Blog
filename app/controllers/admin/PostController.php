@@ -31,8 +31,10 @@ class PostController extends BaseController {
         'content' => $_POST['content']
       ]);
 
-      if ($_POST['img']) {
-        $blogPost->img_url = $_POST['img'];
+      if ($_FILES['img']) {
+        $img_src = "post_images/" . uniqid() . $_FILES['img']['name'];
+        move_uploaded_file($_FILES['img']['tmp_name'], $img_src);
+        $blogPost->img_src = $img_src;
       }
 
       $blogPost->save();

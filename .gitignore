@@ -1,4 +1,5 @@
 vendor/
 logs/
+post_images/
 composer.lock
 .env

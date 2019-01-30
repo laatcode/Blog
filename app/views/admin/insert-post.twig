@@ -13,14 +13,14 @@
   <div class="alert alert-success">Post Saved!</div>
 {% endif %}
 
-<form action="" method="post">
+<form method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="inputTitle">Title</label>
     <input class="form-control" type="text" name="title" id="inputTitle">
   </div>
-  <div class="form-group">
-    <label for="inputImg">Image URL</label>
-    <input class="form-control" type="text" name="img" id="inputImg">
+  <div class="custom-file mb-3">
+    <input type="file" class="custom-file-input" name="img" id="customFile" accept="image/*">
+    <label class="custom-file-label" for="customFile">Choose file</label>
   </div>
   <div class="form-group">
     <label for="inputContent">Content</label>
