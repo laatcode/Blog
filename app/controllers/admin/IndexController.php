@@ -14,7 +14,8 @@ class IndexController extends BaseController {
 
       if ($user) {
         return $this->render('admin/index.twig', [
-          'user' => $user
+          'user' => $user,
+          'userId' => $user->id
         ]);
       }
     }

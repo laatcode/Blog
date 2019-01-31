@@ -10,6 +10,7 @@ try {
 
   createBlogPostsTable($pdo);
   createUsersTable($pdo);
+  createAdminUser($pdo);
 
   echo "Script ejecutado con éxito";
 
@@ -37,9 +38,19 @@ function createUsersTable($pdo) {
     name VARCHAR(60) NOT NULL,
     email VARCHAR(80) NOT NULL,
     password VARCHAR(120) NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL);';
+    created_at DATETIME,
+    updated_at DATETIME);';
 
   $pdo->exec($sql);
+}
+
+function createAdminUser($pdo) {
+  $sql = 'INSERT INTO users (name, email, password) VALUES (:name, :email, :password)';
+  $query = $pdo->prepare($sql);
+  $result = $query->execute([
+    'name' => 'Luis Angel Avila',
+    'email' => 'luisangelavilatorres@gmail.com',
+    'password' => password_hash('secret', PASSWORD_DEFAULT)
+  ]);
 }
  ?>

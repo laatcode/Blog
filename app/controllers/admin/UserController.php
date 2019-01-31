@@ -12,12 +12,15 @@ class UserController extends BaseController {
     $users = User::all();
 
     return $this->render('admin/users.twig', [
-      'users' => $users
+      'users' => $users,
+      'userId' => $_SESSION['userId']
     ]);
   }
 
   public function getCreate() {
-    return $this->render('admin/insert-user.twig');
+    return $this->render('admin/insert-user.twig', [
+      'userId' => $_SESSION['userId']
+    ]);
   }
 
   public function postCreate() {
@@ -44,7 +47,8 @@ class UserController extends BaseController {
 
     return $this->render('admin/insert-user.twig', [
       'result' => $result,
-      'errors' => $errors
+      'errors' => $errors,
+      'userId' => $_SESSION['userId']
     ]);
   }
 }

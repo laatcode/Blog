@@ -47,6 +47,11 @@
           <div class="d-flex flex-column">
             <a href="https://twitter.com/laatcode" target="_blank"><i class="fab fa-twitter"></i>@laatcode</a>
             <a href="mailto:luisangelavilatorres@gmail.com"><i class="fas fa-envelope"></i>luisangelavilatorres@gmail.com</a>
+            {% if userId %}
+              <a href="{{ 'auth/logout' | url }}">Logout</a>
+            {% else %}
+              <a href="{{ 'admin' | url }}">Admin panel</a>
+            {% endif %}
           </div>
         </div>
       </div>

@@ -8,7 +8,17 @@ class IndexController extends BaseController {
   public function getIndex() {
 
     $blogPosts = BlogPost::query()->orderBy('id', 'desc')->get();
-    return $this->render('index.twig', ['blogPosts' => $blogPosts]);
+
+    if (isset($_SESSION['userId'])) {
+      return $this->render('index.twig', [
+        'blogPosts' => $blogPosts,
+        'userId' => $_SESSION['userId']
+      ]);
+    }
+    
+    return $this->render('index.twig', [
+      'blogPosts' => $blogPosts
+    ]);
   }
 
   public function getPost() {

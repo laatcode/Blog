@@ -10,11 +10,16 @@ class PostController extends BaseController {
 
   public function getIndex() {
     $blogPosts = BlogPost::all();
-    return $this->render('admin/posts.twig', ['blogPosts' => $blogPosts]);
+    return $this->render('admin/posts.twig', [
+      'blogPosts' => $blogPosts,
+      'userId' => $_SESSION['userId']
+    ]);
   }
 
   public function getCreate() {
-    return $this->render('admin/insert-post.twig');
+    return $this->render('admin/insert-post.twig', [
+      'userId' => $_SESSION['userId']
+    ]);
   }
 
   public function postCreate() {
@@ -45,7 +50,8 @@ class PostController extends BaseController {
 
     return $this->render('admin/insert-post.twig', [
       'result' => $result,
-      'errors' => $errors
+      'errors' => $errors,
+      'userId' => $_SESSION['userId']
     ]);
   }
 
