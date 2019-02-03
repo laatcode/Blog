@@ -23,9 +23,9 @@
               <div class="dropdown">
                 <div class="user" data-toggle="dropdown">
                   {% if user.img_src %}
-                    <img src="{{ user.img_src | url }}" style="background: white; border-radius: 50%; width:45px; height:45px;">
+                    <img src="{{ user.img_src | url }}">
                   {% else %}
-                    <img src="{{ 'images/profile_images/default.png' | url }}" style="background: white; border-radius: 50%; width:45px; height:45px;">
+                    <img src="{{ 'images/profile_images/default.png' | url }}">
                   {% endif %}
                 </div>
                 <div class="dropdown-menu dropdown-menu-right">

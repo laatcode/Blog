@@ -2,9 +2,10 @@
 
 {% block content %}
 <h2>Posts</h2>
-<p>
+<div class="mb-3">
+  <a class="btn btn-secondary" href="{{ 'admin' | url }}">Back</a>
   <a class="btn btn-primary" href="{{ 'admin/posts/create' | url }}">New Post</a>
-</p>
+</div>
 <table class="table">
   <tr>
     <th>Title</th>

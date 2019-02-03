@@ -2,9 +2,9 @@
 
 {% block content %}
 <h2>New Posts</h2>
-<p>
+<div class="mb-3">
   <a class="btn btn-secondary" href="{{ 'admin/posts' | url }}">Back</a>
-</p>
+</div>
 {% if errors %}
   {% include('partials/errors.twig') %}
 {% endif %}
