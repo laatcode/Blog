@@ -37,7 +37,8 @@ class PostController extends BaseController {
     if ($validator->validate($_POST)) {
       $blogPost = new BlogPost([
         'title' => $_POST['title'],
-        'content' => $_POST['content']
+        'content' => $_POST['content'],
+        'created_by' => $_SESSION['userId']
       ]);
 
       if ($_FILES['img']['name']) {

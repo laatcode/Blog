@@ -41,6 +41,7 @@ class UserController extends BaseController {
       $user->name = $_POST['name'];
       $user->email = $_POST['email'];
       $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+      $user->created_by = $_SESSION['userId'];
 
       if ($_FILES['img']['name']) {
         $img_src = "images/profile_images/" . uniqid() . $_FILES['img']['name'];

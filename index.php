@@ -6,6 +6,8 @@ ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 error_reporting(E_ALL);
 
+ini_set('date.timezone', 'America/Bogota');
+
 require_once('vendor/autoload.php');
 
 session_start();
