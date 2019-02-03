@@ -1,5 +1,7 @@
 vendor/
 logs/
 post_images/
+profile_images/
+!profile_images/default.png
 composer.lock
 .env

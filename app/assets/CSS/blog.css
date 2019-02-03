@@ -17,6 +17,10 @@ html, body {
   font-size: 2rem;
 }
 
+.header .user {
+  font-size: 2rem;
+}
+
 .content {
   padding-top: 20px;
   background: #F3F3F6;
@@ -52,8 +56,12 @@ html, body {
   font-weight: bold;
 }
 
-.thumbnail {
-  width: 100px;
+form #profileImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solid;
+  background: white;
 }
 
 .footer {

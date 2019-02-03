@@ -8,20 +8,11 @@ use App\Models\User;
 class IndexController extends BaseController {
 
   public function getIndex() {
-    if (isset($_SESSION['userId'])) {
-      $userId = $_SESSION['userId'];
-      $user = User::find($userId);
+    $user = User::find($_SESSION['userId']);
 
-      if ($user) {
-        return $this->render('admin/index.twig', [
-          'user' => $user,
-          'userId' => $user->id
-        ]);
-      }
-    }
-
-    header('Location:' . BASE_URL . 'auth/login');
-
+    return $this->render('admin/index.twig', [
+      'user' => $user
+    ]);
   }
 }
 

@@ -10,22 +10,25 @@ class UserController extends BaseController {
 
   public function getIndex(){
     $users = User::all();
+    $user = User::find($_SESSION['userId']);
 
     return $this->render('admin/users.twig', [
       'users' => $users,
-      'userId' => $_SESSION['userId']
+      'user' => $user
     ]);
   }
 
   public function getCreate() {
+    $user = User::find($_SESSION['userId']);
     return $this->render('admin/insert-user.twig', [
-      'userId' => $_SESSION['userId']
+      'user' => $user,
     ]);
   }
 
   public function postCreate() {
     $errors = [];
     $result = false;
+    $loggedUser = User::find($_SESSION['userId']);
 
     $validator = new Validator();
     $validator->add('name', 'required');
@@ -39,6 +42,12 @@ class UserController extends BaseController {
       $user->email = $_POST['email'];
       $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+      if ($_FILES['img']['name']) {
+        $img_src = "images/profile_images/" . uniqid() . $_FILES['img']['name'];
+        move_uploaded_file($_FILES['img']['tmp_name'], $img_src);
+        $user->img_src = $img_src;
+      }
+
       $user->save();
       $result = true;
     }else {
@@ -48,7 +57,7 @@ class UserController extends BaseController {
     return $this->render('admin/insert-user.twig', [
       'result' => $result,
       'errors' => $errors,
-      'userId' => $_SESSION['userId']
+      'user' => $loggedUser
     ]);
   }
 }
