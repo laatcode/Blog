@@ -18,12 +18,12 @@
           <div class="col">
             <h1>Curso de PHP</h1>
           </div>
-          {% if user %}
+          {% if loggedUser %}
             <div class="col-auto">
               <div class="dropdown">
                 <div class="user" data-toggle="dropdown">
-                  {% if user.img_src %}
-                    <img src="{{ user.img_src | url }}">
+                  {% if loggedUser.img_src %}
+                    <img src="{{ loggedUser.img_src | url }}">
                   {% else %}
                     <img src="{{ 'images/profile_images/default.png' | url }}">
                   {% endif %}
@@ -65,7 +65,7 @@
           <div class="d-flex flex-column">
             <a href="https://twitter.com/laatcode" target="_blank"><i class="fab fa-twitter"></i>@laatcode</a>
             <a href="mailto:luisangelavilatorres@gmail.com"><i class="fas fa-envelope"></i>luisangelavilatorres@gmail.com</a>
-            {% if not user %}
+            {% if not loggedUser %}
               <a href="{{ 'admin' | url }}"><i class="fas fa-cogs"></i>Admin panel</a>
             {% endif %}
           </div>

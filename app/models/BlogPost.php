@@ -8,6 +8,10 @@ class BlogPost extends Model {
 
   protected $table = 'blog_posts';
   protected $fillable = ['title', 'content', 'img_src', 'created_by'];
+
+  public function user() {
+    return $this->belongsTo('App\Models\User', 'created_by', 'id');
+  }
 }
 
 

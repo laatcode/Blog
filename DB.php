@@ -10,8 +10,8 @@ try {
   $pdo = new PDO("mysql:host=$DBHost;dbname=$DBName", $DBUser, $DBPassword);
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  createBlogPostsTable($pdo);
   createUsersTable($pdo);
+  createBlogPostsTable($pdo);
   createAdminUser($pdo);
 
   echo "Script ejecutado con éxito";
@@ -30,6 +30,7 @@ function createBlogPostsTable($pdo) {
     content TEXT NOT NULL,
     created_at DATETIME NOT NULL,
     created_by INT NOT NULL,
+    FOREIGN KEY (created_by) REFERENCES users(id),
     updated_at DATETIME NOT NULL);';
 
   $pdo->exec($sql);

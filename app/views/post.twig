@@ -6,7 +6,7 @@
   {% if blogPost.img_src %}
     <img src="{{ blogPost.img_src }}" alt="blog_img">
   {% endif %}
-  <p>Jan 19, 2019 by Alex</p>
+  <p>Jan 19, 2019 by {{ blogPost.user.name }}</p>
   <div class="blog-post-content">
     {{ blogPost.content }}
   </div>

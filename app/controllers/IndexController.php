@@ -11,12 +11,11 @@ class IndexController extends BaseController {
     $blogPosts = BlogPost::query()->orderBy('id', 'desc')->get();
 
     if (isset($_SESSION['userId'])) {
-
-      $user = User::find($_SESSION['userId']);
+      $loggedUser = User::find($_SESSION['userId']);
 
       return $this->render('index.twig', [
         'blogPosts' => $blogPosts,
-        'user' => $user
+        'loggedUser' => $loggedUser
       ]);
     }
 
@@ -29,11 +28,11 @@ class IndexController extends BaseController {
     $blogPost = BlogPost::find($_GET['id']);
 
     if (isset($_SESSION['userId'])) {
-      $user = User::find($_SESSION['userId']);
+      $loggedUser = User::find($_SESSION['userId']);
 
       return $this->render('post.twig', [
         'blogPost' => $blogPost,
-        'user' => $user
+        'loggedUser' => $loggedUser
       ]);
     }
 
@@ -41,7 +40,6 @@ class IndexController extends BaseController {
       'blogPost' => $blogPost
     ]);
   }
-
 }
 
 

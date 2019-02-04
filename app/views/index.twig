@@ -5,7 +5,7 @@
     <a class="post" href="post&id={{ blogPost.id }}">
       <div class="blog-post">
         <h2>{{ blogPost.title }}</h2>
-        <p>Jan 19, 2019 by Alex</p>
+        <p>Jan 19, 2019 by {{ blogPost.user.name }}</p>
         <div class="blog-post-content">
           {{ blogPost.content }}
         </div>
