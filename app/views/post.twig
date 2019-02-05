@@ -4,7 +4,7 @@
 <div class="blog-post">
   <h2>{{ blogPost.title }}</h2>
   {% if blogPost.img_src %}
-    <img src="{{ blogPost.img_src }}" alt="blog_img">
+    <img src="{{ blogPost.img_src | url }}" alt="blog_img">
   {% endif %}
   <p>{{ blogPost.created_at | date('M d, Y h:i a') }} by {{ blogPost.user.name }}</p>
   <div class="blog-post-content">

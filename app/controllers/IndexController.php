@@ -24,8 +24,8 @@ class IndexController extends BaseController {
     ]);
   }
 
-  public function getPost() {
-    $blogPost = BlogPost::find($_GET['id']);
+  public function getPost($id) {
+    $blogPost = BlogPost::find($id);
 
     if (isset($_SESSION['userId'])) {
       $loggedUser = User::find($_SESSION['userId']);
