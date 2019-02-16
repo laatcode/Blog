@@ -14,14 +14,14 @@ class PostController extends BaseController {
     $user = User::find($_SESSION['userId']);
     return $this->render('admin/posts.twig', [
       'blogPosts' => $blogPosts,
-      'user' => $user
+      'loggedUser' => $user
     ]);
   }
 
   public function getCreate() {
     $user = User::find($_SESSION['userId']);
     return $this->render('admin/insert-post.twig', [
-      'user' => $user
+      'loggedUser' => $user
     ]);
   }
 
@@ -56,7 +56,7 @@ class PostController extends BaseController {
     return $this->render('admin/insert-post.twig', [
       'result' => $result,
       'errors' => $errors,
-      'user' => $user
+      'loggedUser' => $user
     ]);
   }
 

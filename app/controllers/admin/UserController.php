@@ -14,14 +14,14 @@ class UserController extends BaseController {
 
     return $this->render('admin/users.twig', [
       'users' => $users,
-      'user' => $user
+      'loggedUser' => $user
     ]);
   }
 
   public function getCreate() {
     $user = User::find($_SESSION['userId']);
     return $this->render('admin/insert-user.twig', [
-      'user' => $user,
+      'loggedUser' => $user,
     ]);
   }
 
@@ -58,7 +58,7 @@ class UserController extends BaseController {
     return $this->render('admin/insert-user.twig', [
       'result' => $result,
       'errors' => $errors,
-      'user' => $loggedUser
+      'loggedUser' => $loggedUser
     ]);
   }
 }

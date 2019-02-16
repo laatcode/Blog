@@ -11,7 +11,7 @@ class IndexController extends BaseController {
     $user = User::find($_SESSION['userId']);
 
     return $this->render('admin/index.twig', [
-      'user' => $user
+      'loggedUser' => $user
     ]);
   }
 }
