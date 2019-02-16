@@ -71,6 +71,10 @@ form #profileImage {
   background: white;
 }
 
+.posts .table a {
+  color: black;
+}
+
 .footer {
   background: black;
   color: white;

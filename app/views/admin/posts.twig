@@ -16,7 +16,11 @@
   {% for blogPost in blogPosts %}
       <tr>
         <td>{{ blogPost.title }}</td>
-        <td>Edit</td>
+        <td>
+          <a href="{{ 'admin/posts/edit/' | url }}{{blogPost.id}}">
+            <i class="fas fa-edit"></i>
+          </a>
+        </td>
         <td>Delete</td>
       </tr>
   {% endfor %}
