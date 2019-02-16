@@ -1,7 +1,6 @@
-vendor/
+images/
+!default.png
 logs/
-post_images/
-profile_images/
-!profile_images/default.png
-composer.lock
+vendor/
 .env
+composer.lock
