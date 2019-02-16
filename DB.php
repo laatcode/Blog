@@ -14,6 +14,18 @@ try {
   createBlogPostsTable($pdo);
   createAdminUser($pdo);
 
+  if (!file_exists('logs')) {
+    mkdir('logs', 0777);
+  }
+
+  if (!file_exists('images/post_images')) {
+    mkdir('images/post_images', 0777, true);
+  }
+
+  if (!file_exists('images/profile_images')) {
+    mkdir('images/profile_images', 0777, true);
+  }
+
   echo "Script ejecutado con éxito";
 
 } catch (\PDOException $e) {
