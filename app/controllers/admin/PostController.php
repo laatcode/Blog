@@ -103,6 +103,13 @@ class PostController extends BaseController {
     ]);
   }
 
+  public function getDelete($id) {
+    $blogPost = BlogPost::find($id);
+    $blogPost->delete();
+    header('Location:' . BASE_URL . 'admin/posts');
+    return null;
+  }
+
 }
 
 

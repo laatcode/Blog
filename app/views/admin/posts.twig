@@ -17,11 +17,15 @@
       <tr>
         <td>{{ blogPost.title }}</td>
         <td>
-          <a href="{{ 'admin/posts/edit/' | url }}{{blogPost.id}}">
+          <a href="{{ 'admin/posts/edit/' | url }}{{ blogPost.id }}">
             <i class="fas fa-edit"></i>
           </a>
         </td>
-        <td>Delete</td>
+        <td>
+          <a href="{{ 'admin/posts/delete/' | url }}{{ blogPost.id }}">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
       </tr>
   {% endfor %}
 </table>
