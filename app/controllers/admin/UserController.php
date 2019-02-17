@@ -41,7 +41,8 @@ class UserController extends BaseController {
       $user->name = $_POST['name'];
       $user->email = $_POST['email'];
       $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-      $user->created_by = $_SESSION['userId'];
+      $user->created_by = $loggedUser->id;
+      $user->updated_by = $loggedUser->id;
 
       if ($_FILES['img']['name']) {
         $img_src = "images/profile_images/" . uniqid() . $_FILES['img']['name'];
@@ -83,7 +84,8 @@ class UserController extends BaseController {
       $user = User::find($id);
       $user->name = $_POST['name'];
       $user->email = $_POST['email'];
-      
+      $user->updated_by = $loggedUser->id;
+
       if ($_POST['password']) {
         $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
       }
@@ -96,6 +98,8 @@ class UserController extends BaseController {
 
       $user->save();
       $result = true;
+    }else {
+      $errors = $validator->getMessages();
     }
 
     return $this->render('admin/insert-user.twig', [

@@ -6,7 +6,7 @@
   {% if blogPost.img_src %}
     <img src="{{ blogPost.img_src | url }}" alt="blog_img">
   {% endif %}
-  <p>{{ blogPost.created_at | date('M d, Y h:i a') }} by {{ blogPost.user.name }}</p>
+  <p>{{ blogPost.created_at | date('M d, Y h:i a') }} by {{ blogPost.createdBy.name }}</p>
   <div class="blog-post-content">
     {{ blogPost.content }}
   </div>

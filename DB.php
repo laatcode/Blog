@@ -29,9 +29,13 @@ try {
   echo "Script ejecutado con éxito";
 
 } catch (\PDOException $e) {
-  echo 'PDO Error: ' . $e->getMessage();
+  if ($e->getCode() == '23000') {
+    echo "Script ejecutado con éxito.</br>Usuario inicial ya existe";
+  }else {
+    echo 'PDO Exception: ' . $e->getMessage();
+  }
 } catch (\Exception $e) {
- echo "Error: ".$e->getMessage();
+ echo "Exception: ".$e->getMessage();
 }
 
 function createBlogPostsTable($pdo) {
@@ -43,7 +47,9 @@ function createBlogPostsTable($pdo) {
     created_at DATETIME NOT NULL,
     created_by INT NOT NULL,
     FOREIGN KEY (created_by) REFERENCES users(id),
-    updated_at DATETIME NOT NULL);';
+    updated_at DATETIME NOT NULL,
+    updated_by INT NOT NULL,
+    FOREIGN KEY (updated_by) REFERENCES users(id));';
 
   $pdo->exec($sql);
 }
@@ -52,19 +58,21 @@ function createUsersTable($pdo) {
   $sql = 'CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(60) NOT NULL,
-    email VARCHAR(80) NOT NULL,
+    email VARCHAR(80) NOT NULL UNIQUE,
     password VARCHAR(120) NOT NULL,
     img_src VARCHAR(80) NULL,
     created_at DATETIME NOT NULL,
     created_by INT NOT NULL,
-    updated_at DATETIME NOT NULL);';
+    updated_at DATETIME NOT NULL,
+    updated_by INT NOT NULL,
+    FOREIGN KEY (updated_by) REFERENCES users(id));';
 
   $pdo->exec($sql);
 }
 
 function createAdminUser($pdo) {
   $datetime = new DateTime();
-  $sql = 'INSERT INTO users (name, email, password, created_at, created_by, updated_at) VALUES (:name, :email, :password, :created_at, :created_by, :updated_at)';
+  $sql = 'INSERT INTO users (name, email, password, created_at, created_by, updated_at, updated_by) VALUES (:name, :email, :password, :created_at, :created_by, :updated_at, :updated_by)';
   $query = $pdo->prepare($sql);
   $result = $query->execute([
     'name' => 'Luis Angel Avila',
@@ -72,7 +80,8 @@ function createAdminUser($pdo) {
     'password' => password_hash('secret', PASSWORD_DEFAULT),
     'created_at' => $datetime->format('Y-m-d H:i:s'),
     'created_by' => 1,
-    'updated_at' => $datetime->format('Y-m-d H:i:s')
+    'updated_at' => $datetime->format('Y-m-d H:i:s'),
+    'updated_by' => 1,
   ]);
 }
  ?>
