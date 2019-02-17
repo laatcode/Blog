@@ -67,7 +67,7 @@ class PostController extends BaseController {
   public function getEdit($id) {
     $blogPost = BlogPost::find($id);
     $user = User::find($_SESSION['userId']);
-    return $this->render('admin/edit-post.twig', [
+    return $this->render('admin/insert-post.twig', [
       'loggedUser' => $user,
       'blogPost' => $blogPost
     ]);
@@ -95,7 +95,7 @@ class PostController extends BaseController {
       $errors = $validator->getMessages();
     }
 
-    return $this->render('admin/edit-post.twig', [
+    return $this->render('admin/insert-post.twig', [
       'loggedUser' => $user,
       'errors' => $errors,
       'result' => $result,
