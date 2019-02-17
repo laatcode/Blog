@@ -61,6 +61,50 @@ class UserController extends BaseController {
       'loggedUser' => $loggedUser
     ]);
   }
+
+  public function getEdit($id) {
+    $user = User::find($id);
+    return $this->render('admin/insert-user.twig', [
+      'user' => $user
+    ]);
+  }
+
+  public function postEdit($id) {
+    $errors = [];
+    $result = false;
+    $loggedUser = User::find($_SESSION['userId']);
+
+    $validator = new Validator();
+    $validator->add('name', 'required');
+    $validator->add('email', 'required');
+    $validator->add('email', 'email');
+
+    if ($validator->validate($_POST)) {
+      $user = User::find($id);
+      $user->name = $_POST['name'];
+      $user->email = $_POST['email'];
+      
+      if ($_POST['password']) {
+        $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+      }
+
+      if ($_FILES['img']['name']) {
+        $img_src = "images/profile_images/" . uniqid() . $_FILES['img']['name'];
+        move_uploaded_file($_FILES['img']['tmp_name'], $img_src);
+        $user->img_src = $img_src;
+      }
+
+      $user->save();
+      $result = true;
+    }
+
+    return $this->render('admin/insert-user.twig', [
+      'result' => $result,
+      'errors' => $errors,
+      'loggedUser' => $loggedUser,
+      'user' => $user
+    ]);
+  }
 }
 
  ?>

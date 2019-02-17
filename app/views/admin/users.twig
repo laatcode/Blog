@@ -18,8 +18,16 @@
       <tr>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td>Edit</td>
-        <td>Delete</td>
+        <td>
+          <a href="{{ 'admin/users/edit/' | url }}{{ user.id }}">
+            <i class="fas fa-edit"></i>
+          </a>
+        </td>
+        <td>
+          <a href="{{ 'admin/users/delete/' | url }}{{ user.id }}">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
       </tr>
   {% endfor %}
 </table>

@@ -1,7 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-<h2>New User</h2>
+<h2>{% if user %}Edit User{% else %}New User{% endif %}</h2>
 <p>
   <a class="btn btn-secondary" href="{{ 'admin/users' | url }}">Back</a>
 </p>
@@ -15,7 +15,7 @@
 
 <form method="post" enctype="multipart/form-data">
   <div class="form-group">
-    <img src="{{ 'images/profile_images/default.png' | url }}" alt="Profile Image" id="profileImage">
+    <img src="{% if user.img_src %}{{ user.img_src | url }} {% else %}{{ 'images/profile_images/default.png' | url }}{% endif %}" alt="Profile Image" id="profileImage">
   </div>
   <div class="custom-file mb-3">
     <input type="file" class="custom-file-input" name="img" id="customFile" accept="image/*">
@@ -23,11 +23,11 @@
   </div>
   <div class="form-group">
     <label for="inputName">Name</label>
-    <input class="form-control" type="text" name="name" id="inputName">
+    <input class="form-control" type="text" name="name" id="inputName" value="{% if user %}{{ user.name }}{% endif %}">
   </div>
   <div class="form-group">
     <label for="inputEmail">Email</label>
-    <input class="form-control" type="text" name="email" id="inputEmail">
+    <input class="form-control" type="text" name="email" id="inputEmail" value="{% if user %}{{ user.email }}{% endif %}">
   </div>
   <div class="form-group">
     <label for="inputPassword">Password</label>
