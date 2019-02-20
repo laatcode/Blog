@@ -3,10 +3,12 @@
 namespace App\Controllers;
 
 use Twig_Loader_Filesystem;
+use App\Models\User;
 
 class BaseController {
 
   protected $templateEngine;
+  protected static $loggedUser = null;
 
   public function __construct() {
     // Clase que utiliza twig para cargar los archivos del sistema. Este método recibe como parametro, la ruta en la que se encuentran las vistas a utilizar.
@@ -22,6 +24,11 @@ class BaseController {
     $this->templateEngine->addFilter(new \Twig_SimpleFilter('url', function ($path){
       return BASE_URL . $path;
     }));
+
+    if (isset($_SESSION['userId'])) {
+      self::$loggedUser = User::find($_SESSION['userId']);
+    }
+
   }
 
   public function render($fileName, $data = []) {

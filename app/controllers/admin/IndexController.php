@@ -8,10 +8,8 @@ use App\Models\User;
 class IndexController extends BaseController {
 
   public function getIndex() {
-    $user = User::find($_SESSION['userId']);
-
     return $this->render('admin/index.twig', [
-      'loggedUser' => $user
+      'loggedUser' => parent::$loggedUser
     ]);
   }
 }

@@ -9,20 +9,11 @@ use Sirius\Validation\Validator;
 class IndexController extends BaseController {
 
   public function getIndex() {
-
     $blogPosts = BlogPost::query()->orderBy('id', 'desc')->get();
 
-    if (isset($_SESSION['userId'])) {
-      $loggedUser = User::find($_SESSION['userId']);
-
-      return $this->render('index.twig', [
-        'blogPosts' => $blogPosts,
-        'loggedUser' => $loggedUser
-      ]);
-    }
-
     return $this->render('index.twig', [
-      'blogPosts' => $blogPosts
+      'blogPosts' => $blogPosts,
+      'loggedUser' => parent::$loggedUser
     ]);
   }
 
@@ -30,19 +21,10 @@ class IndexController extends BaseController {
     $blogPost = BlogPost::find($id);
     $comments = BlogPost::find($id)->comments;
 
-    if (isset($_SESSION['userId'])) {
-      $loggedUser = User::find($_SESSION['userId']);
-
-      return $this->render('post.twig', [
-        'blogPost' => $blogPost,
-        'comments' => $comments,
-        'loggedUser' => $loggedUser
-      ]);
-    }
-
     return $this->render('post.twig', [
       'blogPost' => $blogPost,
-      'comments' => $comments
+      'comments' => $comments,
+      'loggedUser' => parent::$loggedUser
     ]);
   }
 
@@ -68,26 +50,13 @@ class IndexController extends BaseController {
     $blogPost = BlogPost::find($postId);
     $comments = BlogPost::find($postId)->comments;
 
-    if (isset($_SESSION['userId'])) {
-      $loggedUser = User::find($_SESSION['userId']);
-
-      return $this->render('post.twig', [
-        'blogPost' => $blogPost,
-        'comments' => $comments,
-        'loggedUser' => $loggedUser,
-        'errors' => $errors,
-        'result' => $result
-      ]);
-    }
-
     return $this->render('post.twig', [
       'blogPost' => $blogPost,
       'comments' => $comments,
+      'loggedUser' => parent::$loggedUser,
       'errors' => $errors,
       'result' => $result
     ]);
   }
 }
-
-
  ?>

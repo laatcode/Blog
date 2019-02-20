@@ -11,10 +11,9 @@ class PostController extends BaseController {
 
   public function getIndex() {
     $blogPosts = BlogPost::all();
-    $loggedUser = User::find($_SESSION['userId']);
     return $this->render('admin/posts.twig', [
       'blogPosts' => $blogPosts,
-      'loggedUser' => $loggedUser
+      'loggedUser' => parent::$loggedUser
     ]);
   }
 
@@ -27,23 +26,21 @@ class PostController extends BaseController {
   }
 
   public function getCreate() {
-    $loggedUser = User::find($_SESSION['userId']);
     return $this->render('admin/insert-post.twig', [
-      'loggedUser' => $loggedUser
+      'loggedUser' => parent::$loggedUser
     ]);
   }
 
   public function postCreate() {
     $errors = [];
     $result = false;
-    $loggedUser = User::find($_SESSION['userId']);
 
     if ($this->validatePost()) {
       $blogPost = new BlogPost([
         'title' => $_POST['title'],
         'content' => $_POST['content'],
         'created_by' => $_SESSION['userId'],
-        'updated_by' => $loggedUser->id
+        'updated_by' => parent::$loggedUser->id
       ]);
 
       if ($_FILES['img']['name']) {
@@ -61,15 +58,14 @@ class PostController extends BaseController {
     return $this->render('admin/insert-post.twig', [
       'result' => $result,
       'errors' => $errors,
-      'loggedUser' => $loggedUser
+      'loggedUser' => parent::$loggedUser
     ]);
   }
 
   public function getEdit($id) {
     $blogPost = BlogPost::find($id);
-    $loggedUser = User::find($_SESSION['userId']);
     return $this->render('admin/insert-post.twig', [
-      'loggedUser' => $loggedUser,
+      'loggedUser' => parent::$loggedUser,
       'blogPost' => $blogPost
     ]);
   }
@@ -77,13 +73,12 @@ class PostController extends BaseController {
   public function postEdit($id) {
     $errors = [];
     $result = false;
-    $loggedUser = User::find($_SESSION['userId']);
 
     if ($this->validatePost()) {
       $blogPost = BlogPost::find($id);
       $blogPost->title = $_POST['title'];
       $blogPost->content = $_POST['content'];
-      $blogPost->updated_by = $loggedUser->id;
+      $blogPost->updated_by = parent::$loggedUser->id;
 
       if ($_FILES['img']['name']) {
         $img_src = "images/post_images/" . uniqid() . $_FILES['img']['name'];
@@ -98,7 +93,7 @@ class PostController extends BaseController {
     }
 
     return $this->render('admin/insert-post.twig', [
-      'loggedUser' => $loggedUser,
+      'loggedUser' => parent::$loggedUser,
       'errors' => $errors,
       'result' => $result,
       'blogPost' => $blogPost
@@ -113,6 +108,4 @@ class PostController extends BaseController {
   }
 
 }
-
-
  ?>
