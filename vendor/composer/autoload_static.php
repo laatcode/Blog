@@ -159,6 +159,7 @@ class ComposerStaticInitf39c41dc45a0a2d288b54a4d0c0345c8
         'App\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/controllers/IndexController.php',
         'App\\Log' => __DIR__ . '/../..' . '/app/Log.php',
         'App\\Models\\BlogPost' => __DIR__ . '/../..' . '/app/models/BlogPost.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/models/Comment.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/models/User.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',

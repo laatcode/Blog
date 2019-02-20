@@ -16,6 +16,10 @@ class BlogPost extends Model {
   public function updatedBy() {
     return $this->belongsTo('App\Models\User', 'updated_by', 'id');
   }
+
+  public function comments() {
+    return $this->hasMany('App\Models\Comment', 'post_id', 'id')->orderBy('created_at', 'desc');
+  }
 }
 
 

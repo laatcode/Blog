@@ -12,6 +12,7 @@ try {
 
   createUsersTable($pdo);
   createBlogPostsTable($pdo);
+  createCommentsTable($pdo);
   createAdminUser($pdo);
 
   if (!file_exists('logs')) {
@@ -63,6 +64,7 @@ function createUsersTable($pdo) {
     img_src VARCHAR(80) NULL,
     created_at DATETIME NOT NULL,
     created_by INT NOT NULL,
+    FOREIGN KEY (created_by) REFERENCES users(id),
     updated_at DATETIME NOT NULL,
     updated_by INT NOT NULL,
     FOREIGN KEY (updated_by) REFERENCES users(id));';
@@ -83,5 +85,18 @@ function createAdminUser($pdo) {
     'updated_at' => $datetime->format('Y-m-d H:i:s'),
     'updated_by' => 1,
   ]);
+}
+
+function createCommentsTable($pdo) {
+  $sql = 'CREATE TABLE IF NOT EXISTS comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT NOT NULL,
+    content TEXT NOT NULL,
+    created_by VARCHAR(60) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES blog_posts(id));';
+
+  $pdo->exec($sql);
 }
  ?>

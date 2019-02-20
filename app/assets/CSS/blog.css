@@ -63,6 +63,30 @@ html, body {
   font-weight: bold;
 }
 
+.comment {
+  background: white;
+  border: 1px solid #058ED9;
+  border-radius: 10px;
+  margin-bottom: 3px;
+  padding: 5px 10px;
+}
+
+.comment p {
+  margin-bottom: 0;
+}
+
+.comment .timestamp {
+  font-size: .8rem;
+}
+
+.new-comment {
+  margin-top: 15px;
+}
+
+.new-comment input {
+  margin-bottom: 5px;
+}
+
 form #profileImage {
   width: 150px;
   height: 150px;

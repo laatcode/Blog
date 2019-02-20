@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>Admin Panel</h2>
-<p>Welcome {{ user.name }}</p>
+<p>Welcome {{ loggedUser.name }}</p>
 <ul>
   <li>
     <a href="{{ 'admin/posts' | url }}">Manage Posts</a>

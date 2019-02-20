@@ -14,6 +14,7 @@ return array(
     'App\\Controllers\\IndexController' => $baseDir . '/app/controllers/IndexController.php',
     'App\\Log' => $baseDir . '/app/Log.php',
     'App\\Models\\BlogPost' => $baseDir . '/app/models/BlogPost.php',
+    'App\\Models\\Comment' => $baseDir . '/app/models/Comment.php',
     'App\\Models\\User' => $baseDir . '/app/models/User.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
