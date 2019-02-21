@@ -28,6 +28,10 @@ html, body {
   height:45px;
 }
 
+.dropdown {
+  cursor: pointer;
+}
+
 .content {
   padding-top: 20px;
   background: #F3F3F6;
