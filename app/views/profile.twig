@@ -1,0 +1,12 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<div class="row mb-3 d-flex align-items-center">
+  <img class="profile-image" src="{{ user.img_src | url }}" alt="Pofile picture">
+  <h2 class="ml-3">{{ user.name }}</h2>
+</div>
+<div class="row">
+  <h3 class="mb-3">Posts ({{ user.posts | length }})</h3>
+  {% include('partials/posts-list.twig') %}
+</div>
+{% endblock %}

@@ -15,7 +15,7 @@
 
 <form method="post" enctype="multipart/form-data">
   <div class="form-group">
-    <img src="{% if user.img_src %}{{ user.img_src | url }} {% else %}{{ 'images/profile_images/default.png' | url }}{% endif %}" alt="Profile Image" id="profileImage">
+    <img class="profile-image" src="{% if user.img_src %}{{ user.img_src | url }} {% else %}{{ 'images/profile_images/default.png' | url }}{% endif %}" alt="Profile Image" id="profileImage">
   </div>
   <div class="custom-file mb-3">
     <input type="file" class="custom-file-input" name="img" id="customFile" accept="image/*">

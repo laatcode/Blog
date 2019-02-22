@@ -91,7 +91,7 @@ html, body {
   margin-bottom: 5px;
 }
 
-form #profileImage {
+.profile-image {
   width: 150px;
   height: 150px;
   border-radius: 50%;

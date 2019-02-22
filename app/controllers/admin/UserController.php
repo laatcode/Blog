@@ -45,6 +45,8 @@ class UserController extends BaseController {
         $img_src = "images/profile_images/" . uniqid() . $_FILES['img']['name'];
         move_uploaded_file($_FILES['img']['tmp_name'], $img_src);
         $user->img_src = $img_src;
+      }else {
+        $user->img_src = 'images/profile_images/default.png';
       }
 
       $user->save();

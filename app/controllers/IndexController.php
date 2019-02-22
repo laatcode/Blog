@@ -58,5 +58,16 @@ class IndexController extends BaseController {
       'result' => $result
     ]);
   }
+
+  public function getProfile($id) {
+    $user = User::find($id);
+
+
+    return $this->render('profile.twig', [
+      'user' => $user,
+      'blogPosts' => $user->posts,
+      'loggedUser' => parent::$loggedUser
+    ]);
+  }
 }
  ?>

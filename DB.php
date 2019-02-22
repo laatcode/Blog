@@ -80,6 +80,7 @@ function createAdminUser($pdo) {
     'name' => 'Luis Angel Avila',
     'email' => 'luisangelavilatorres@gmail.com',
     'password' => password_hash('secret', PASSWORD_DEFAULT),
+    'img_src' => 'images/profile_images/default.png',
     'created_at' => $datetime->format('Y-m-d H:i:s'),
     'created_by' => 1,
     'updated_at' => $datetime->format('Y-m-d H:i:s'),

@@ -1,15 +1,5 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-  {% for blogPost in blogPosts %}
-    <a class="post" href="post/{{ blogPost.id }}">
-      <div class="blog-post">
-        <h2>{{ blogPost.title }}</h2>
-        <p>{{ blogPost.created_at | date('M d, Y h:i a') }} by {{ blogPost.createdBy.name }}</p>
-        <div class="blog-post-content">
-          {{ blogPost.content }}
-        </div>
-      </div>
-    </a>
-  {% endfor %}
+  {% include('partials/posts-list.twig') %}
 {% endblock %}
