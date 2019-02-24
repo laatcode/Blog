@@ -28,6 +28,7 @@ class UserController extends BaseController {
     $result = false;
 
     $validator = new Validator();
+    $validator->add('role', 'required');
     $validator->add('name', 'required');
     $validator->add('email', 'required');
     $validator->add('email', 'email');
@@ -35,6 +36,7 @@ class UserController extends BaseController {
 
     if ($validator->validate($_POST)) {
       $user = new User();
+      $user->user_role = $_POST['role'];
       $user->name = $_POST['name'];
       $user->email = $_POST['email'];
       $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -75,12 +77,14 @@ class UserController extends BaseController {
     $result = false;
 
     $validator = new Validator();
+    $validator->add('role', 'required');
     $validator->add('name', 'required');
     $validator->add('email', 'required');
     $validator->add('email', 'email');
 
     if ($validator->validate($_POST)) {
       $user = User::find($id);
+      $user->user_role = $_POST['role'];
       $user->name = $_POST['name'];
       $user->email = $_POST['email'];
       $user->updated_by = parent::$loggedUser->id;
