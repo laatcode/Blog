@@ -10,7 +10,13 @@ use Sirius\Validation\Validator;
 class PostController extends BaseController {
 
   public function getIndex() {
-    $blogPosts = BlogPost::all();
+    $loggedUser = parent::$loggedUser;
+    if ($loggedUser->user_role == 1) {
+      $blogPosts = BlogPost::all();
+    }else {
+      $blogPosts = BlogPost::where('created_by', $loggedUser->id)->get();
+    }
+    
     return $this->render('admin/posts.twig', [
       'blogPosts' => $blogPosts,
       'loggedUser' => parent::$loggedUser

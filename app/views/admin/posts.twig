@@ -9,6 +9,7 @@
 <table class="table">
   <tr>
     <th>Title</th>
+    <th>Created By</th>
     <th>Edit</th>
     <th>Delete</th>
   </tr>
@@ -16,6 +17,7 @@
   {% for blogPost in blogPosts %}
       <tr>
         <td>{{ blogPost.title }}</td>
+        <td>{{ blogPost.createdBy.name }}</td>
         <td>
           <a href="{{ 'admin/posts/edit/' | url }}{{ blogPost.id }}">
             <i class="fas fa-edit"></i>
