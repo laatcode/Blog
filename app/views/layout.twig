@@ -25,6 +25,7 @@
                   <img src="{{ loggedUser.img_src | url }}">
                 </div>
                 <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="{{ 'myprofile' | url }}">My profile</a>
                   <a class="dropdown-item" href="{{ 'admin' | url }}">Admin panel</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{{ 'auth/logout' | url }}">Logout</a>

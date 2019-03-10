@@ -55,6 +55,7 @@ $router->filter('auth', function (){
 $router->controller('/auth', App\Controllers\AuthController::class);
 
 $router->group(['before' => 'auth'], function ($router){
+  $router->controller('/myprofile', App\Controllers\Admin\ProfileController::class);
   $router->controller('/admin', App\Controllers\Admin\IndexController::class);
   $router->controller('/admin/posts', App\Controllers\Admin\PostController::class);
   $router->controller('/admin/users', App\Controllers\Admin\UserController::class);

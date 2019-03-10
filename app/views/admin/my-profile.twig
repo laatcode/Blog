@@ -1,0 +1,50 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<h2>My profile</h2>
+<p>
+  <a class="btn btn-secondary" href="{{ 'admin/users' | url }}">Back</a>
+</p>
+{% if errors %}
+  {% include('partials/errors.twig') %}
+{% endif %}
+
+{% if result %}
+  <div class="alert alert-success">Profile Saved!</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <img class="profile-image" src="{{ loggedUser.img_src | url }}" alt="Profile Image" id="profileImage">
+  </div>
+  <div class="custom-file mb-3">
+    <input type="file" class="custom-file-input" name="img" id="customFile" accept="image/*">
+    <label class="custom-file-label" for="customFile">Choose file</label>
+  </div>
+  {% if loggedUser.user_role == 1 %}
+  <div class="form-group">
+    <label for="inputUserRole">Role</label>
+    <select class="form-control" name="role">
+      <option value=""></option>
+      <option value="1" {% if user.user_role == 1 %}selected{% endif %}>Administrator</option>
+      <option value="2" {% if user.user_role == 2 %}selected{% endif %}>Editor</option>
+    </select>
+  </div>
+  {% endif %}
+  <div class="form-group">
+    <label for="inputName">Name</label>
+    <input class="form-control" type="text" name="name" id="inputName" value="{{ loggedUser.name }}">
+  </div>
+  <div class="form-group">
+    <label for="inputEmail">Email</label>
+    <input class="form-control" type="text" name="email" id="inputEmail" value="{{ loggedUser.email }}">
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Password</label>
+    <input class="form-control" type="password" name="password" id="inputPassword">
+  </div>
+  <div class="form-group">
+    <input class="btn btn-primary" type="submit" value="Save">
+  </div>
+</form>
+{% endblock %}
