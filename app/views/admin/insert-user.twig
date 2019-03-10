@@ -1,7 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-<h2>{% if user %}Edit User{% else %}New User{% endif %}</h2>
+<h2>{% if loggedUser %}Edit User{% else %}New User{% endif %}</h2>
 <p>
   <a class="btn btn-secondary" href="{{ 'admin/users' | url }}">Back</a>
 </p>
@@ -21,14 +21,16 @@
     <input type="file" class="custom-file-input" name="img" id="customFile" accept="image/*">
     <label class="custom-file-label" for="customFile">Choose file</label>
   </div>
+  {% if loggedUser.user_role == 1 %}
   <div class="form-group">
     <label for="inputUserRole">Role</label>
     <select class="form-control" name="role">
       <option value=""></option>
-      <option value="1" {% if user %}selected{% endif %}>Administrator</option>
-      <option value="2">Editor</option>
+      <option value="1" {% if user.user_role == 1 %}selected{% endif %}>Administrator</option>
+      <option value="2" {% if user.user_role == 2 %}selected{% endif %}>Editor</option>
     </select>
   </div>
+  {% endif %}
   <div class="form-group">
     <label for="inputName">Name</label>
     <input class="form-control" type="text" name="name" id="inputName" value="{% if user %}{{ user.name }}{% endif %}">

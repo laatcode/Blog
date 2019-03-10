@@ -17,6 +17,13 @@ html, body {
   font-size: 2rem;
 }
 
+.header .login a {
+  color: white;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
 .header .user {
   font-size: 2rem;
 }

@@ -113,11 +113,10 @@ function insertUserRoles($pdo) {
   foreach ($userRoles as $userRole) {
     $result = $query->execute([
       'description' => $userRole,
-      'created_at' => $datetime,
-      'updated_at' => $datetime
+      'created_at' => $datetime->format('Y-m-d H:i:s'),
+      'updated_at' => $datetime->format('Y-m-d H:i:s'),
     ]);
   }
-
 }
 
 function insertAdminUser($pdo) {
