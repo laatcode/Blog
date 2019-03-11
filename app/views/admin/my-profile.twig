@@ -26,8 +26,8 @@
     <label for="inputUserRole">Role</label>
     <select class="form-control" name="role">
       <option value=""></option>
-      <option value="1" {% if user.user_role == 1 %}selected{% endif %}>Administrator</option>
-      <option value="2" {% if user.user_role == 2 %}selected{% endif %}>Editor</option>
+      <option value="1" {% if loggedUser.user_role == 1 %}selected{% endif %}>Administrator</option>
+      <option value="2" {% if loggedUser.user_role == 2 %}selected{% endif %}>Editor</option>
     </select>
   </div>
   {% endif %}

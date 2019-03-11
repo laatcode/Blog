@@ -40,7 +40,14 @@ class IndexController extends BaseController {
       $comment = new Comment();
       $comment->post_id = $postId;
       $comment->content = $_POST['content'];
-      $comment->created_by = $_POST['name'];
+
+      if (isset($_SESSION['userId'])) {
+        $comment->created_by = parent::$loggedUser->id;
+        $comment->created_by_name = parent::$loggedUser->name;
+      }else {
+        $comment->created_by_name = $_POST['name'];
+      }
+
       $comment->save();
       $result = true;
     }else {

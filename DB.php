@@ -91,7 +91,9 @@ function createCommentsTable($pdo) {
     id INT AUTO_INCREMENT PRIMARY KEY,
     post_id INT NOT NULL,
     content TEXT NOT NULL,
-    created_by VARCHAR(60) NOT NULL,
+    created_by INT,
+    FOREIGN KEY (created_by) REFERENCES users(id),
+    created_by_name VARCHAR(60) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
     FOREIGN KEY (post_id) REFERENCES blog_posts(id));';

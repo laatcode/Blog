@@ -15,7 +15,7 @@
   <h4>Comments ({{ comments | length }})</h4>
   {% for comment in comments %}
     <div class="comment">
-      <span><b>{{ comment.created_by }}:</b></span>
+      <span><b>{{ comment.created_by_name }}:</b></span>
       <p>{{ comment.content }}</p>
       <span class="text-muted timestamp">{{ comment.created_at | date('M d, Y h:i a') }}</span>
     </div>
@@ -27,7 +27,7 @@
   {% endif %}
   <form method="post">
     <div class="form-group">
-      <input class="form-control" type="text" name="name" placeholder="Insert your name/nickname">
+      <input class="form-control" type="text" name="name" placeholder="Insert your name/nickname" {% if loggedUser %}value="{{ loggedUser.name }}" readonly{% endif %}>
       <textarea class="form-control" name="content" rows="2" placeholder="Insert a comment"></textarea>
     </div>
     <div class="form-group text-right">
